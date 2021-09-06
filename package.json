@@ -1,0 +1,9 @@
+{
+  "name": "TRMJsHelpers",
+  "version": "1.0.0",
+  "description": "some javascript functions to help with development",
+  "keywords": "debug console, make get url, check fetch status",
+  "homepage": "",
+  "license": "X11 License",
+  "author": "Sergey Kolesnikov <trm@mail.ru>"
+}
