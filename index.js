@@ -14,7 +14,7 @@ export function debugPrint(Data, Title = "", OriginalFlag = false, TraceFlag = f
     if (typeof Data === typeof [1] || typeof Data === typeof { a: 1 }) {
         for (let k in Data) {
             print(
-                `===> %c Data[${k}]: %c %s`,
+                `===> %c Data[${k}]: %c `,
                 "color: gray; font-weight: bold;",
                 "color: green; font-weight: normal;",
                 Data[k]
@@ -25,9 +25,13 @@ export function debugPrint(Data, Title = "", OriginalFlag = false, TraceFlag = f
     }
 }
 
+export function colorPrint(Info, Color = "blue", BoldFlag = true) {
+    const Style = `color: ${Color};` + BoldFlag ? ` font-weight: bold;` : "";
+    console.log("%c %s", Style, Info);
+}
+
 /**
- * проверяет статус в полученном ответа,
- * ответ приходит в разном виде в зависимости от используемой библиотеки
+ * проверяет статус в полученном ответе функцией fetch
  * 
  * @param {object} Response - объект ответа от сервера, полученный через fetch
  * @param {number} ResponseStatus - код статуса, который нужно проверить
@@ -36,6 +40,16 @@ export function debugPrint(Data, Title = "", OriginalFlag = false, TraceFlag = f
 export function checkFetchResponseStatus(Response, ResponseStatus) {
     // для fetch, 401 ошибка возвращается с обычным ответом
     return "status" in Response && Response["status"] == ResponseStatus;
+}
+/**
+ * возвращает статус в полученном ответе функцией fetch,
+ * если в объекте нет поля "status", то вернется 0
+ * 
+ * @param {object} Response - объект ответа от сервера, полученный через fetch
+ * @returns {number}
+ */
+ export function getFetchResponseStatus(Response) {
+    return "status" in Response ? Response["status"] : 0;
 }
 
 /**
